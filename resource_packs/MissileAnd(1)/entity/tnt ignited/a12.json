@@ -1,0 +1,19 @@
+{
+    "format_version": "1.8.0",
+    "minecraft:client_entity": {
+      "description": {
+        "identifier": "ignite:tnt12",
+        "materials": {
+          "default": "spider"
+        },
+        "textures": {
+         "default": "textures/entity/tnt12",
+		 "white": "textures/entity/white"
+        },
+        "geometry": {
+          "default": "geometry.target"
+        },
+        "render_controllers": [ "controller.render.tnted" ]
+      }
+    }
+}

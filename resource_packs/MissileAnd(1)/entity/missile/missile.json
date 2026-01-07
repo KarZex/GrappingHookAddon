@@ -1,0 +1,20 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "addon:missile",
+      "materials": { "default": "iron_golem" },
+      "textures": {
+        "default": "textures/entity/tnt0"
+      },
+      "geometry": {
+        "default": "geometry.missile"
+      },
+	  "spawn_egg":{
+	  "texture":"missile",
+	  "texture_index":0
+	  },
+      "render_controllers": [ "controller.render.iron_golem" ]
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "addon:target",
+      "materials": { "default": "iron_golem" },
+      "textures": {
+         "default": "textures/entity/target",
+		 "white": "textures/entity/white"
+      },
+      "geometry": {
+        "default": "geometry.target"
+      },
+	  "spawn_egg":{
+	  "texture":"tg",
+	  "texture_index":0
+	  },
+      "render_controllers": [ "controller.render.tnted" ]
+    }
+  }
+}
