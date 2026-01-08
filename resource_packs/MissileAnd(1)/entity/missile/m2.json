@@ -5,10 +5,10 @@
       "identifier": "zex:hook_test_dummy",
       "materials": { "default": "iron_golem" },
       "textures": {
-        "default": "textures/entity/tnt2"
+        "default": "textures/entity/fishhook"
       },
       "geometry": {
-        "default": "geometry.missile"
+        "default": "geometry.fishing_hook"
       },
 	  "spawn_egg":{
 	  "texture":"missile2",

@@ -4,18 +4,44 @@
         "description": {
             "identifier": "zex:hook_test_dummy",
             "is_spawnable": true,
-            "is_summonable": true
+            "is_summonable": true,
+            "scripts": {
+                "animate": [
+                "heri"
+                ]
+            },
+            "animations": {
+                "heri": "controller.animation.glapp"
+            }
+
         },
         "component_groups": {
+            "despawn": {
+                "minecraft:instant_despawn": {
+                    "remove_child_entities": false
+                }
+            }
         },
         "components": {
             "minecraft:collision_box": {
                 "width": 0.15,
                 "height": 0.15
             },
+            "minecraft:health": {
+                "value": 32767,
+                "max": 32767
+            },
+            "minecraft:damage_sensor": {
+                "triggers": [
+                    {
+                        "cause": "all",
+                        "deals_damage": "no"
+                    }
+                ]
+            },
 			"minecraft:leashable": {
 				"soft_distance": 0,
-				"hard_distance": 1,
+				"hard_distance": 4,
 				"max_distance": 128,
 				"can_be_stolen": false,
 				"on_unleash": {
@@ -65,10 +91,10 @@
             }
         },
         "events": {
-            "from_grapplehook": {
+            "despawn": {
                 "add": {
                     "component_groups": [
-                        "from_grapplehook"
+                        "despawn"
                     ]
                 }
             }

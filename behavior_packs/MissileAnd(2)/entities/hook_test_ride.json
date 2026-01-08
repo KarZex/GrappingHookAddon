@@ -4,21 +4,20 @@
         "description": {
             "identifier": "zex:hook_test_ride",
             "is_spawnable": true,
-            "is_summonable": true
+            "is_summonable": true,
+            "scripts": {
+                "animate": [
+                "heri"
+                ]
+            },
+            "animations": {
+                "heri": "controller.animation.glapp"
+            }
         },
         "component_groups": {
-            "loot_jungle": {
-                "minecraft:spawn_entity": {
-                    "entities": [
-                        {
-                            "should_leash": true,
-                            "num_to_spawn": 1,
-                            "min_wait_time": 0,
-                            "max_wait_time": 0,
-                            "spawn_entity": "zex:hook_test_ride",
-                            "single_use": true
-                        }
-                    ]
+            "despawn": {
+                "minecraft:instant_despawn": {
+                    "remove_child_entities": false
                 }
             }
         },
@@ -27,6 +26,18 @@
                 "width": 0.15,
                 "height": 0.15
             },
+            "minecraft:health": {
+                "value": 32767,
+                "max": 32767
+            },
+            "minecraft:damage_sensor": {
+                "triggers": [
+                    {
+                        "cause": "all",
+                        "deals_damage": "no"
+                    }
+                ]
+            },
 			"minecraft:type_family": {
 				"family": [
 					"dummy2"
@@ -34,7 +45,7 @@
 			},
 			"minecraft:rideable": {
 				"family_types": [
-					"player"
+					"player","mob"
 				],
 				"crouching_skip_interact": false,
 				"pull_in_entities": false,
@@ -53,7 +64,6 @@
             "minecraft:loot": {
                 "table": "loot_tables/gameplay/fishing.json"
             },
-            "minecraft:physics": {},
             "minecraft:dimension_bound": {},
             "minecraft:transient": {},
             "minecraft:pushable": {
@@ -69,10 +79,10 @@
             }
         },
         "events": {
-            "from_grapplehook": {
+            "despawn": {
                 "add": {
                     "component_groups": [
-                        "from_grapplehook"
+                        "despawn"
                     ]
                 }
             }

@@ -159,6 +159,30 @@ async function afterJump(player) {
 	
 }
 */
+
+world.afterEvents.projectileHitEntity.subscribe( async e => {
+	const dimension = e.dimension;
+	const projectile = e.projectile;
+	const owner = e.source;
+	if( projectile.typeId == "zex:hook_test" && !projectile.hasTag(`runned`) ){
+		try{
+			const victim = e.getEntityHit().entity;
+			const dummyEntity = dimension.spawnEntity(`zex:hook_test_dummy`,victim.location);
+			dummyEntity.getComponent(EntityComponentTypes.Leashable).leashTo(owner);
+			const rideEntity = dimension.spawnEntity(`zex:hook_test_ride`,victim.location);
+			dummyEntity.getComponent(EntityComponentTypes.Rideable).addRider(rideEntity);
+			rideEntity.getComponent(EntityComponentTypes.Rideable).addRider(victim);
+			projectile.addTag(`runned`);
+			await system.waitTicks(20);
+			try{
+				projectile.remove();
+				dummyEntity.remove();
+				rideEntity.remove();
+			}catch{}
+		}catch{}
+	}
+},)
+
 world.afterEvents.projectileHitBlock.subscribe( async e => {
 	const dimension = e.dimension;
 	const projectile = e.projectile;
@@ -171,6 +195,8 @@ world.afterEvents.projectileHitBlock.subscribe( async e => {
 		const rideEntity = dimension.spawnEntity(`zex:hook_test_ride`,owner.location);
 		dummyEntity.getComponent(EntityComponentTypes.Rideable).addRider(rideEntity);
 		rideEntity.getComponent(EntityComponentTypes.Rideable).addRider(owner);
+
+		//dummyEntity.applyImpulse({ x:0,y:1,z:0 })
 		
 		//projectile.triggerEvent(`loot_jungle`);
 		projectile.addTag(`runned`);
@@ -201,7 +227,11 @@ world.afterEvents.projectileHitBlock.subscribe( async e => {
 		)
 		*/
 		await system.waitTicks(100);
-		projectile.remove()
+		try{
+			projectile.remove();
+			dummyEntity.remove();
+			rideEntity.remove();
+		}catch{}
 		
 	}
 	else if( projectile.typeId == "zex:hook_ender" && !projectile.hasTag(`runned`) ){
